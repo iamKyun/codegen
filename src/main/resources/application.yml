@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:dm://localhost:5236/your_database_name
+    driver-class-name: dm.jdbc.driver.DmDriver
+    username: SYSDBA
+    password: SYSDBA001
+    hikari:
+      maximum-pool-size: 10
