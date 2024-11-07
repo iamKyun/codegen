@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:dm://localhost:5236/your_database_name
+    url: jdbc:dm://172.16.11.87:5237/ZBPT
     driver-class-name: dm.jdbc.driver.DmDriver
-    username: SYSDBA
-    password: SYSDBA001
+    username: ZBPT
+    password: ZBPT@dm@2024
     hikari:
       maximum-pool-size: 10
