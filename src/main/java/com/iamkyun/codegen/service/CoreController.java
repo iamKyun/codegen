@@ -1,4 +1,4 @@
-package com.iamkyun.codegen.core;
+package com.iamkyun.codegen.service;
 
 import com.iamkyun.codegen.model.TableColumn;
 import com.iamkyun.codegen.model.TableInfo;
