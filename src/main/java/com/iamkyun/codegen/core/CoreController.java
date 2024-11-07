@@ -1,5 +1,7 @@
 package com.iamkyun.codegen.core;
 
+import com.iamkyun.codegen.model.TableColumn;
+import com.iamkyun.codegen.model.TableInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
