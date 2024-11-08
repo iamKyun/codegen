@@ -7,21 +7,26 @@ import java.util.List;
 @Data
 public class GenerateConfig {
 
+    // 表设置
     private General general;
+    // 搜索项设置
     private List<SearchField> search;
+    // 列表设置
     private List<TableField> table;
+    // 表单设置
     private List<FormField> form;
+    // 子表设置
     private List<SubTable> subTables;
 
     @Data
     public static class General {
         private String tableName;
         private Boolean isShowNum;
-        private Boolean isUseCommonGroup;
         private Boolean isFixedNum;
         private Boolean isFixedAction;
         private Boolean isLogicDel;
         private String logicDelField;
+        private Boolean isUseCommonGroup;
         private String groupCode;
         private String groupRelateId;
     }

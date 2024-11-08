@@ -1,5 +1,6 @@
 package com.iamkyun.codegen.service;
 
+import com.iamkyun.codegen.model.GenerateConfig;
 import com.iamkyun.codegen.model.TableColumn;
 import com.iamkyun.codegen.model.TableInfo;
 import lombok.RequiredArgsConstructor;
@@ -63,6 +64,10 @@ public class CoreService {
             String key = rs.getString("KEY");
             return new TableColumn(columnName, columnComment, columnType, key);
         });
+    }
+
+    public void generate(GenerateConfig request) {
+        
     }
 
 }
