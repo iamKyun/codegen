@@ -20,19 +20,17 @@ public class CoreService {
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final ITypeConvert typeConvert;
 
-
     public List<TableInfo> getTables() {
         String sql = """
-            SELECT DISTINCT T1.TABLE_NAME AS TABLE_NAME, T2.COMMENTS AS TABLE_COMMENT
-            FROM USER_TAB_COLUMNS T1
-                     INNER JOIN USER_TAB_COMMENTS T2 ON T1.TABLE_NAME = T2.TABLE_NAME""";
+                SELECT DISTINCT T1.TABLE_NAME AS TABLE_NAME, T2.COMMENTS AS TABLE_COMMENT
+                FROM USER_TAB_COLUMNS T1
+                         INNER JOIN USER_TAB_COMMENTS T2 ON T1.TABLE_NAME = T2.TABLE_NAME""";
         return namedParameterJdbcTemplate.query(sql,
-            (rs, rowNum) -> new TableInfo(rs.getString("TABLE_NAME"), rs.getString("TABLE_COMMENT")));
+                (rs, rowNum) -> new TableInfo(rs.getString("TABLE_NAME"), rs.getString("TABLE_COMMENT")));
     }
 
     public List<TableColumn> getTableColumns(String tableName) {
-        String sql =
-            """
+        String sql = """
                 SELECT T2.COLUMN_NAME,
                        T1.COMMENTS as COLUMN_COMMENT,
                        CASE
@@ -70,14 +68,21 @@ public class CoreService {
         });
     }
 
-    public void generate(GenerateConfig request) {
-        // 生成实体类
+    public void generate(GenerateConfig config) {
         List<String> tables = new ArrayList<>();
-        tables.add(request.getGeneral().getTableName());
-        for (SubTableConfig subTable : request.getSubTables()) {
+        tables.add(config.getGeneral().getTableName());
+        for (SubTableConfig subTable : config.getSubTables()) {
             tables.add(subTable.getGeneral().getTableName());
         }
+        // 生成实体类
+        generateEntity(config, tables);
+    }
 
+    private void generateEntity(GenerateConfig config, List<String> tables) {
+        String packageName = config.getPathConfig().getPackageName() + "." + config.getPathConfig().getModule() + ".entity";
+        for (String table : tables) {
+            List<TableColumn> columns = getTableColumns(table);
+        }
     }
 
 }

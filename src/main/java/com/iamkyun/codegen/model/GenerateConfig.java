@@ -18,6 +18,6 @@ public class GenerateConfig {
     // 子表设置
     private List<SubTableConfig> subTables;
     // 生成配置
-    private PathConfig packageConfig;
+    private PathConfig pathConfig;
 }
 
