@@ -1,12 +1,15 @@
 package com.iamkyun.codegen.service;
 
+import com.iamkyun.codegen.core.ITypeConvert;
 import com.iamkyun.codegen.model.GenerateConfig;
+import com.iamkyun.codegen.model.SubTableConfig;
 import com.iamkyun.codegen.model.TableColumn;
 import com.iamkyun.codegen.model.TableInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +18,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class CoreService {
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private final ITypeConvert typeConvert;
 
 
     public List<TableInfo> getTables() {
@@ -67,7 +71,13 @@ public class CoreService {
     }
 
     public void generate(GenerateConfig request) {
-        
+        // 生成实体类
+        List<String> tables = new ArrayList<>();
+        tables.add(request.getGeneral().getTableName());
+        for (SubTableConfig subTable : request.getSubTables()) {
+            tables.add(subTable.getGeneral().getTableName());
+        }
+
     }
 
 }
