@@ -61,7 +61,7 @@ public class CoreService {
             String columnComment = rs.getString("COLUMN_COMMENT");
             String columnType = rs.getString("DATA_TYPE");
             String key = rs.getString("KEY");
-            return new TableColumn(columnName, columnType, columnComment, key);
+            return new TableColumn(columnName, columnComment, columnType, key);
         });
     }
 
