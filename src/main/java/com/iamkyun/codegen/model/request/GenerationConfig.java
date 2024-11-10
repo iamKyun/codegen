@@ -1,12 +1,11 @@
-package com.iamkyun.codegen.model;
-
-import lombok.Data;
+package com.iamkyun.codegen.model.request;
 
 import java.util.List;
 
-@Data
-public class GenerateConfig {
+import lombok.Data;
 
+@Data
+public class GenerationConfig {
     // 表设置
     private GeneralConfig general;
     // 搜索项设置
@@ -15,9 +14,6 @@ public class GenerateConfig {
     private List<TableFieldConfig> table;
     // 表单设置
     private List<FormFieldConfig> form;
-    // 子表设置
-    private List<SubTableConfig> subTables;
-    // 生成配置
-    private PathConfig pathConfig;
+    // 是否主表
+    private boolean isMainTable;
 }
-

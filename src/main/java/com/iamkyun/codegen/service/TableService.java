@@ -1,24 +1,39 @@
 package com.iamkyun.codegen.service;
 
-import com.iamkyun.codegen.core.ITypeConvert;
-import com.iamkyun.codegen.model.GenerateConfig;
-import com.iamkyun.codegen.model.SubTableConfig;
-import com.iamkyun.codegen.model.TableColumn;
-import com.iamkyun.codegen.model.TableInfo;
-import lombok.RequiredArgsConstructor;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.iamkyun.codegen.model.data.TableColumn;
+import com.iamkyun.codegen.model.data.TableInfo;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Service;
+
 @Service
 @RequiredArgsConstructor
-public class CoreService {
+@Slf4j
+public class TableService {
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-    private final ITypeConvert typeConvert;
+
+    public TableInfo getTable(String tableName) {
+        String sql = """
+                SELECT DISTINCT T1.TABLE_NAME AS TABLE_NAME, T2.COMMENTS AS TABLE_COMMENT
+                FROM USER_TAB_COLUMNS T1
+                         INNER JOIN USER_TAB_COMMENTS T2 ON T1.TABLE_NAME = T2.TABLE_NAME
+                WHERE T1.TABLE_NAME = :tableName
+                LIMIT 1""";
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("tableName", tableName);
+        List<TableInfo> result = namedParameterJdbcTemplate.query(sql, params,
+                (rs, rowNum) -> new TableInfo(rs.getString("TABLE_NAME"), rs.getString("TABLE_COMMENT")));
+        if (result.isEmpty()) {
+            return null;
+        }
+        return result.getFirst();
+    }
 
     public List<TableInfo> getTables() {
         String sql = """
@@ -30,6 +45,11 @@ public class CoreService {
     }
 
     public List<TableColumn> getTableColumns(String tableName) {
+        // 检查表是否存在
+        TableInfo tableInfo = getTable(tableName);
+        if (tableInfo == null) {
+            throw new RuntimeException("表不存在");
+        }
         String sql = """
                 SELECT T2.COLUMN_NAME,
                        T1.COMMENTS as COLUMN_COMMENT,
@@ -67,22 +87,4 @@ public class CoreService {
             return new TableColumn(columnName, columnComment, columnType, key);
         });
     }
-
-    public void generate(GenerateConfig config) {
-        List<String> tables = new ArrayList<>();
-        tables.add(config.getGeneral().getTableName());
-        for (SubTableConfig subTable : config.getSubTables()) {
-            tables.add(subTable.getGeneral().getTableName());
-        }
-        // 生成实体类
-        generateEntity(config, tables);
-    }
-
-    private void generateEntity(GenerateConfig config, List<String> tables) {
-        String packageName = config.getPathConfig().getPackageName() + "." + config.getPathConfig().getModule() + ".entity";
-        for (String table : tables) {
-            List<TableColumn> columns = getTableColumns(table);
-        }
-    }
-
 }

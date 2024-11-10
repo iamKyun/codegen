@@ -1,10 +1,11 @@
-package com.iamkyun.codegen.model;
+package com.iamkyun.codegen.model.request;
 
 import lombok.Data;
 
 @Data
 public class GeneralConfig {
     private String tableName;
+    private String tableComment;
     private Boolean isShowNum;
     private Boolean isFixedNum;
     private Boolean isFixedAction;
@@ -13,4 +14,5 @@ public class GeneralConfig {
     private Boolean isUseCommonGroup;
     private String groupCode;
     private String groupRelateId;
-} 
+    private String foreignKey;
+}
