@@ -168,7 +168,7 @@ public class GenerationService {
                             field.put("comment", search.getLabel());
                             field.put("name", search.getAttrName());
                             field.put("type", search.getType());
-                            field.put("rangeSearch", Boolean.TRUE.equals(search.getRangeSearch()));
+                            field.put("rangeSearch", !Boolean.FALSE.equals(search.getRangeSearch()));
                             FieldType fieldType = typeConvertor.convertSearchType(search.getType(),
                                     search.getColumnDataType());
                             field.put("javaType", fieldType.getJavaType());
@@ -537,7 +537,7 @@ public class GenerationService {
                             Map<String, Object> item = new HashMap<>();
                             item.put("type", i.getType());
                             item.put("fuzzySearch", !Boolean.FALSE.equals(i.getFuzzySearch()));
-                            item.put("rangeSearch", Boolean.TRUE.equals(i.getRangeSearch()));
+                            item.put("rangeSearch", !Boolean.FALSE.equals(i.getRangeSearch()));
                             item.put("columnName", i.getColumnName());
                             item.put("attrName", i.getAttrName());
                             searchItems.add(item);

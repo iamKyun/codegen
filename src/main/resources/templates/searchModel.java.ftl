@@ -35,7 +35,7 @@ public class ${className}SearchParam implements Serializable {
     <#else>
     @ApiModelProperty("${field.comment!''}")
     private ${field.javaType} ${field.name};
-
     </#if>
 </#list>
+
 }

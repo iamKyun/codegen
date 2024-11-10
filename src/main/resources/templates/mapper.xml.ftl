@@ -35,7 +35,7 @@
     </select>
 
     <select id="getModelById" resultType="${basePackage}.model.${className}Model">
-        SELECT id as id,
+        SELECT ID as id,
         <#list formItems as column>
             ${column.columnName} as ${column.columnNameAlias}<#if column_has_next>,</#if>
     </#list>
@@ -44,7 +44,7 @@
     </select>
 <#else>
     <select id="getModelsByForeignKey" resultType="${basePackage}.model.${className}PageModel">
-        SELECT id as id,
+        SELECT ID as id,
         <#list tableItems as column>
             ${column.columnName} as ${column.columnNameAlias}<#if column_has_next>,</#if>
     </#list>

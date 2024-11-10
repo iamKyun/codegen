@@ -1,7 +1,10 @@
 spring:
+  output:
+    ansi:
+      enabled: always
   datasource:
-#    url: jdbc:dm://172.19.224.131:5236/ZBPT
-    url: jdbc:dm://${DB_IP:172.16.11.87}:${DB_PORT:5237}/ZBPT
+    url: jdbc:dm://172.19.224.131:5236/ZBPT
+    # url: jdbc:dm://${DB_IP:172.16.11.87}:${DB_PORT:5237}/ZBPT
     driver-class-name: dm.jdbc.driver.DmDriver
     username: ZBPT
     password: ZBPT@dm@2024

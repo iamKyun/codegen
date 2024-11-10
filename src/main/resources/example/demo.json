@@ -1,0 +1,206 @@
+{
+  "general": {
+    "tableName": "DEMO_SINGLE",
+    "isLogicDel": true,
+    "isUseCommonGroup": true,
+    "groupRelateId": "LAST_LOGIN",
+    "logicDelField": "IS_ACTIVE",
+    "groupCode": "ABCD"
+  },
+  "search": [
+    {
+      "id": "30d26576-2177-4460-9794-6cc798c561c9",
+      "label": "姓名",
+      "type": "text",
+      "columnName": "NAME",
+      "attrName": "name",
+      "columnDataType": "VARCHAR",
+      "columnKey": null
+    },
+    {
+      "id": "74124115-b3be-4dc8-9442-5a9e71c3a7bf",
+      "label": "薪资",
+      "type": "select",
+      "dictCode": "SYS_DICT",
+      "columnName": "SALARY",
+      "attrName": "salary",
+      "columnDataType": "DECIMAL",
+      "columnKey": null
+    },
+    {
+      "id": "a69e25bd-aea3-4933-88c2-a547e8fb233d",
+      "label": "入职日期",
+      "type": "date",
+      "columnName": "JOIN_DATE",
+      "attrName": "joinDate",
+      "columnDataType": "DATE",
+      "columnKey": null
+    },
+    {
+      "id": "913af562-cc9f-4e99-8b40-3bc497bd14eb",
+      "label": "是否活跃",
+      "type": "radio",
+      "options": [
+        {
+          "key": "V1",
+          "value": "1"
+        },
+        {
+          "key": "V2",
+          "value": "2"
+        }
+      ],
+      "columnName": "IS_ACTIVE",
+      "attrName": "isActive",
+      "columnDataType": "CHAR",
+      "columnKey": null
+    }
+  ],
+  "table": [
+    {
+      "id": "c0a306ad-5361-470d-90c5-dd675f2c1f3f",
+      "type": "text",
+      "label": "姓名",
+      "attrName": "name",
+      "columnName": "NAME",
+      "columnDataType": "VARCHAR",
+      "columnKey": null
+    },
+    {
+      "id": "f359da4a-4857-41ad-b14c-278cf4eb4f93",
+      "type": "date",
+      "label": "入职日期",
+      "attrName": "joinDate",
+      "columnName": "JOIN_DATE",
+      "columnDataType": "DATE",
+      "columnKey": null
+    },
+    {
+      "id": "8b7744ae-9850-4ace-843b-367990e17ce6",
+      "type": "dict",
+      "label": "是否活跃",
+      "attrName": "isActive",
+      "columnName": "IS_ACTIVE",
+      "columnDataType": "CHAR",
+      "columnKey": null,
+      "dictCode": "SYS_DICT"
+    }
+  ],
+  "form": [
+    {
+      "id": "e94a891a-1bc1-4b5b-8711-9c25b9313fcd",
+      "label": "姓名",
+      "type": "text",
+      "columnName": "NAME",
+      "attrName": "name",
+      "columnDataType": "VARCHAR",
+      "columnKey": null
+    },
+    {
+      "id": "c8646fd8-9418-48df-9659-349524263bad",
+      "label": "入职日期",
+      "type": "date",
+      "columnName": "JOIN_DATE",
+      "attrName": "joinDate",
+      "columnDataType": "DATE",
+      "columnKey": null
+    },
+    {
+      "id": "5c870a3f-ea9a-444a-9220-c8e16a67cb1c",
+      "label": "薪资",
+      "type": "number",
+      "columnName": "SALARY",
+      "attrName": "salary",
+      "columnDataType": "DECIMAL",
+      "columnKey": null
+    },
+    {
+      "id": "ceb265ae-fd5d-4c20-a7c0-db82e53ec214",
+      "label": "地址",
+      "type": "textarea",
+      "columnName": "ADDRESS",
+      "attrName": "address",
+      "columnDataType": "VARCHAR",
+      "columnKey": null
+    },
+    {
+      "id": "349bf76a-d5d7-4c8c-a1a9-85cc85cf73f3",
+      "label": "是否活跃",
+      "type": "select",
+      "dictCode": "SYS_DICT",
+      "columnName": "IS_ACTIVE",
+      "attrName": "isActive",
+      "columnDataType": "CHAR",
+      "columnKey": null
+    },
+    {
+      "id": "17898ab4-5c74-464a-bae9-984b4bb98404",
+      "label": "文件上传",
+      "type": "attachment",
+      "attachmentRelateType": "ASD",
+      "attachmentMaxSize": 1,
+      "attachmentAllowType": ".XLS",
+      "attrName": "attachmentIds"
+    }
+  ],
+  "subTables": [
+    {
+      "id": "664919a5-1822-4fa9-8550-6d9573208c93",
+      "general": {
+        "tableName": "DEMO_SLAVE",
+        "isShowNum": true,
+        "foreignKey": "MAIN_ID"
+      },
+      "table": [
+        {
+          "id": "b5f601c2-b2a1-4662-a79b-3e067f49749d",
+          "type": "text",
+          "label": "子项名称",
+          "attrName": "itemName",
+          "columnName": "ITEM_NAME",
+          "columnDataType": "VARCHAR",
+          "columnKey": null
+        },
+        {
+          "id": "aff3d544-c40a-4dfb-836a-b21b126ef41f",
+          "type": "date",
+          "label": "购买日期",
+          "attrName": "purchaseDate",
+          "columnName": "PURCHASE_DATE",
+          "columnDataType": "DATE",
+          "columnKey": null
+        }
+      ],
+      "form": [
+        {
+          "id": "17c4b0a6-0591-4ba6-adeb-aebf180aa2ff",
+          "label": "子项名称",
+          "type": "text",
+          "columnName": "ITEM_NAME",
+          "attrName": "itemName",
+          "columnDataType": "VARCHAR",
+          "columnKey": null
+        },
+        {
+          "id": "c811cd9a-a7f7-4b80-89ef-d593afe121b2",
+          "label": "购买日期",
+          "type": "date",
+          "columnName": "PURCHASE_DATE",
+          "attrName": "purchaseDate",
+          "columnDataType": "DATE",
+          "columnKey": null
+        },
+        {
+          "id": "01676ba6-587e-4c3a-9b21-29d3793295c0",
+          "label": "是否可用",
+          "type": "radio",
+          "columnName": "IS_AVAILABLE",
+          "attrName": "isAvailable",
+          "columnDataType": "CHAR",
+          "columnKey": null,
+          "dictCode": "asd"
+        }
+      ]
+    }
+  ]
+}

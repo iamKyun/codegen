@@ -104,8 +104,8 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${c
         if (models != null && !models.isEmpty()) {
             List<${className}> entities = models.stream().map(model -> {
                 ${className} entity = new ${className}();
-                entity.set${foreignKey}(foreignKey);
                 BeanUtils.copyProperties(model, entity);
+                entity.set${foreignKey}(foreignKey);
                 <#list attachmentFields as attachmentField>
                 // 保存附件
                 List<String> ${attachmentField.varName} = model.get${attachmentField.fieldName}();
