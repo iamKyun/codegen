@@ -73,7 +73,7 @@ public class GenerationService {
         for (GenerationConfig generationConfig : generationConfigs) {
             GeneralConfig tableInfo = generationConfig.getGeneral();
             String tableName = tableInfo.getTableName();
-            String className = StrUtil.upperFirst(StrUtil.toCamelCase(tableName));
+            String className = StrUtil.upperFirst(StrUtil.toCamelCase(tableName.toLowerCase()));
 
             // 准备模板数据
             Map<String, Object> param = new HashMap<>();
@@ -120,10 +120,10 @@ public class GenerationService {
                             .filter(config -> !config.isMainTable())
                             .forEach(subConfig -> {
                                 Map<String, Object> subTable = new HashMap<>();
-                                String subClassName = StrUtil
-                                        .upperFirst(StrUtil.toCamelCase(subConfig.getGeneral().getTableName()));
+                                String subTableName = subConfig.getGeneral().getTableName().toLowerCase();
+                                String subClassName = StrUtil.upperFirst(StrUtil.toCamelCase(subTableName));
                                 subTable.put("className", subClassName);
-                                subTable.put("varName", StrUtil.toCamelCase(subConfig.getGeneral().getTableName()));
+                                subTable.put("varName", StrUtil.toCamelCase(subTableName));
                                 subTable.put("comment", subConfig.getGeneral().getTableComment());
                                 subTables.add(subTable);
                             });
@@ -148,7 +148,7 @@ public class GenerationService {
 
         for (GenerationConfig generationConfig : generationConfigs) {
             GeneralConfig tableInfo = generationConfig.getGeneral();
-            String tableName = tableInfo.getTableName();
+            String tableName = tableInfo.getTableName().toLowerCase();
             String className = StrUtil.upperFirst(StrUtil.toCamelCase(tableName));
 
             // 准备模板数据
@@ -199,7 +199,7 @@ public class GenerationService {
 
         for (GenerationConfig generationConfig : generationConfigs) {
             GeneralConfig tableInfo = generationConfig.getGeneral();
-            String tableName = tableInfo.getTableName();
+            String tableName = tableInfo.getTableName().toLowerCase();
             String className = StrUtil.upperFirst(StrUtil.toCamelCase(tableName));
 
             // 准备模板数据
@@ -249,7 +249,7 @@ public class GenerationService {
 
         for (GenerationConfig generationConfig : generationConfigs) {
             GeneralConfig tableInfo = generationConfig.getGeneral();
-            String tableName = tableInfo.getTableName();
+            String tableName = tableInfo.getTableName().toLowerCase();
             String className = StrUtil.upperFirst(StrUtil.toCamelCase(tableName));
 
             // 准备模板数据
@@ -297,10 +297,10 @@ public class GenerationService {
                             .filter(config -> !config.isMainTable())
                             .forEach(subConfig -> {
                                 Map<String, Object> subTable = new HashMap<>();
-                                String subClassName = StrUtil
-                                        .upperFirst(StrUtil.toCamelCase(subConfig.getGeneral().getTableName()));
+                                String subTableName = subConfig.getGeneral().getTableName().toLowerCase();
+                                String subClassName = StrUtil.upperFirst(StrUtil.toCamelCase(subTableName));
                                 subTable.put("className", subClassName);
-                                subTable.put("varName", StrUtil.toCamelCase(subConfig.getGeneral().getTableName()));
+                                subTable.put("varName", StrUtil.toCamelCase(subTableName));
                                 subTable.put("comment", subConfig.getGeneral().getTableComment());
                                 subTables.add(subTable);
                             });
@@ -325,9 +325,9 @@ public class GenerationService {
 
         for (GenerationConfig generationConfig : generationConfigs) {
             GeneralConfig tableInfo = generationConfig.getGeneral();
-            String tableName = tableInfo.getTableName();
+            String tableName = tableInfo.getTableName().toLowerCase();
             String classNameVar = StrUtil.toCamelCase(tableName);
-            String className = StrUtil.upperFirst(classNameVar);
+            String className = StrUtil.upperFirst(StrUtil.toCamelCase(tableName));
 
             // 准备模板数据
             Map<String, Object> param = new HashMap<>();
@@ -356,7 +356,7 @@ public class GenerationService {
 
         for (GenerationConfig generationConfig : generationConfigs) {
             GeneralConfig tableInfo = generationConfig.getGeneral();
-            String tableName = tableInfo.getTableName();
+            String tableName = tableInfo.getTableName().toLowerCase();
             String className = StrUtil.upperFirst(StrUtil.toCamelCase(tableName));
 
             // 准备模板数据
@@ -390,10 +390,11 @@ public class GenerationService {
                 List<Map<String, Object>> subClasses = new ArrayList<>();
                 for (GenerationConfig subTable : generationConfigs) {
                     if (!subTable.isMainTable()) {
-                        String varName = StrUtil.toCamelCase(subTable.getGeneral().getTableName());
+                        String varName = StrUtil.toCamelCase(subTable.getGeneral().getTableName().toLowerCase());
                         Map<String, Object> subClass = new HashMap<>();
                         subClass.put("className", StrUtil.upperFirst(varName));
                         subClass.put("varName", varName);
+                        subClass.put("comment", subTable.getGeneral().getTableComment());
                         subClasses.add(subClass);
                     }
                 }
@@ -401,7 +402,7 @@ public class GenerationService {
             } else {
                 String foreignKey = generationConfig.getGeneral().getForeignKey();
                 if (StrUtil.isNotBlank(foreignKey)) {
-                    param.put("foreignKey", StrUtil.upperFirst(StrUtil.toCamelCase(foreignKey)));
+                    param.put("foreignKey", StrUtil.upperFirst(StrUtil.toCamelCase(foreignKey.toLowerCase())));
                 }
             }
 
@@ -420,7 +421,7 @@ public class GenerationService {
 
         for (GenerationConfig generationConfig : generationConfigs) {
             GeneralConfig tableInfo = generationConfig.getGeneral();
-            String tableName = tableInfo.getTableName();
+            String tableName = tableInfo.getTableName().toLowerCase();
             String className = StrUtil.upperFirst(StrUtil.toCamelCase(tableName));
 
             // 准备模板数据
@@ -457,7 +458,7 @@ public class GenerationService {
             param.put("packageName", packagePath);
             param.put("tableName", tableName);
             param.put("classComment", ClassComment.of(tableInfo.getTableComment(), extraConfig.getAuthor()));
-            param.put("className", StrUtil.upperFirst(StrUtil.toCamelCase(tableName)));
+            param.put("className", StrUtil.upperFirst(StrUtil.toCamelCase(tableName.toLowerCase())));
             param.put("hasTableLogic", Boolean.TRUE.equals(tableInfo.getIsLogicDel()));
             // 处理字段信息
             List<Map<String, Object>> fields = new ArrayList<>();
@@ -466,7 +467,7 @@ public class GenerationService {
             for (TableColumn column : columns) {
                 Map<String, Object> field = new HashMap<>();
                 field.put("comment", column.getColumnComment());
-                field.put("name", StrUtil.toCamelCase(column.getColumnName()));
+                field.put("name", StrUtil.toCamelCase(column.getColumnName().toLowerCase()));
 
                 // 转换数据类型，并收集需要导入的包
                 IColumnType columnType = typeConvert.processTypeConvert(column.getDataType());
@@ -490,7 +491,8 @@ public class GenerationService {
             param.put("imports", imports);
 
             // 生成文件
-            String outputPath = generateDir + SLASH + StrUtil.upperFirst(StrUtil.toCamelCase(tableName)) + ".java";
+            String outputPath = generateDir + SLASH + StrUtil.upperFirst(StrUtil.toCamelCase(tableName.toLowerCase()))
+                    + ".java";
             templates.add(new GenerationTemplate("entity.java.ftl", outputPath, param));
         }
         return templates;
@@ -505,7 +507,7 @@ public class GenerationService {
         for (GenerationConfig generationConfig : generationConfigs) {
             GeneralConfig tableInfo = generationConfig.getGeneral();
             String tableName = tableInfo.getTableName();
-            String className = StrUtil.upperFirst(StrUtil.toCamelCase(tableName));
+            String className = StrUtil.upperFirst(StrUtil.toCamelCase(tableName.toLowerCase()));
 
             // 准备模板数据
             Map<String, Object> param = new HashMap<>();
@@ -576,7 +578,7 @@ public class GenerationService {
         for (GenerationConfig generationConfig : generationConfigs) {
             GeneralConfig tableInfo = generationConfig.getGeneral();
             String tableName = tableInfo.getTableName();
-            String className = StrUtil.upperFirst(StrUtil.toCamelCase(tableName));
+            String className = StrUtil.upperFirst(StrUtil.toCamelCase(tableName.toLowerCase()));
 
             // 准备模板数据
             Map<String, Object> param = new HashMap<>();
