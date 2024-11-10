@@ -51,7 +51,7 @@ public class ${className}Controller extends BaseController {
 
 
     @ApiOperation(value = "保存${moduleCn!''}", tags = {"${moduleCn!''}"})
-    @PostMapping("")
+    @PostMapping("/saveOrUpdate")
     public Result<String> saveOrUpdate(@RequestBody @Validated ${className}SaveModel model) {
         ${classNameVar}Service.saveOrUpdateModel(model);
         return Result.buildSuccess("保存成功", model.getId());
