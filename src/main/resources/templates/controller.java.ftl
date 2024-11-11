@@ -4,6 +4,7 @@ import com.gzcss.starter.web.controller.BaseController;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ${basePackage}.service.${className}Service;
@@ -36,6 +37,7 @@ import java.util.List;
 @RestController
 @Api(tags = {"${moduleCn!''}"})
 @Slf4j
+@RequestMapping("/${classNameVar}")
 public class ${className}Controller extends BaseController {
 
     @Autowired
@@ -43,7 +45,7 @@ public class ${className}Controller extends BaseController {
 <#if isMainTable>
     @ApiOperation(value = "分页查询${moduleCn!''}", tags = {"${moduleCn!''}"})
     @GetMapping("/page")
-    public Result<IPage<${className}PageModel>> page${className}(${className}SearchParam searchParam, PageParam pageParam) {
+    public Result<IPage<${className}PageModel>> pageQuery(${className}SearchParam searchParam, PageParam pageParam) {
         // 构建分页查询
         IPage<${className}PageModel> pageList = ${classNameVar}Service.pageQuery(searchParam, pageParam);
         return Result.buildSuccess("查询成功", pageList);
