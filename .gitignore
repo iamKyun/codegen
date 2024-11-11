@@ -8,3 +8,4 @@ out
 gen
 target
 .vscode
+src/main/resources/static
