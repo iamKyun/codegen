@@ -10,6 +10,7 @@ public class SearchFieldConfig {
     private String columnName;
     private String columnDataType;
     private String columnKey;
+    private Integer dataLength;
     private String attrName;
     private Boolean displayFull;
     private String dictCode;

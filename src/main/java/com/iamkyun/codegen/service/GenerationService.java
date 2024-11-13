@@ -275,6 +275,7 @@ public class GenerationService {
                                     form.getColumnDataType());
                             field.put("javaType", fieldType.getJavaType());
                             field.put("dateFormat", form.getDateFormat());
+                            field.put("dataLength", form.getDataLength());
                             fields.add(field);
 
                             // 如果字段类型需要导入，添加到imports

@@ -9,6 +9,7 @@ public class FormFieldConfig {
     private String type;
     private String columnName;
     private String columnDataType;
+    private Integer dataLength;
     private String columnKey;
     private String dateFormat = "YYYY-MM-DD HH:mm:ss";
     private String dictCode;

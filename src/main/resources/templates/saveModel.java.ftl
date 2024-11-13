@@ -24,7 +24,7 @@ public class ${className}SaveModel implements Serializable {
     private String id;
 </#if>
 <#list fields as field>
-    @ApiModelProperty("${field.comment!''}")
+    @ApiModelProperty("${field.comment!''} - 长度${field.dataLength}")
     <#if field.type == "date">
     @JsonFormat(pattern = "${field.dateFormat}", timezone = "GMT+8")
     @DateTimeFormat(pattern = "${field.dateFormat}")

@@ -11,6 +11,7 @@ public class TableFieldConfig {
     private String type;
     private String label;
     private String columnName;
+    private Integer dataLength;
     private String attrName;
     private String width;
     private String dictCode;

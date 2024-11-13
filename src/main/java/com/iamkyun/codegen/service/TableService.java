@@ -60,6 +60,7 @@ public class TableService {
                                                                       THEN T2.DATA_TYPE || '(' || T2.DATA_PRECISION || ',' || T2.DATA_SCALE || ')'
                                                                   ELSE T2.DATA_TYPE || '(' || T2.DATA_PRECISION || ')' END)
                            ELSE T2.DATA_TYPE END DATA_TYPE,
+                       T2.DATA_LENGTH AS DATA_LENGTH,
                        CASE WHEN CONSTRAINT_TYPE = 'P' THEN 'PRI' END AS KEY
                 FROM USER_COL_COMMENTS T1, USER_TAB_COLUMNS T2, (SELECT T4.TABLE_NAME, T4.COLUMN_NAME, T5.CONSTRAINT_TYPE
                     FROM USER_CONS_COLUMNS T4, USER_CONSTRAINTS T5
@@ -83,8 +84,9 @@ public class TableService {
             String columnName = rs.getString("COLUMN_NAME");
             String columnComment = rs.getString("COLUMN_COMMENT");
             String columnType = rs.getString("DATA_TYPE");
+            int dataLength = rs.getInt("DATA_LENGTH");
             String key = rs.getString("KEY");
-            return new TableColumn(columnName, columnComment, columnType, key);
+            return new TableColumn(columnName, columnComment, columnType, dataLength, key);
         });
     }
 }

@@ -11,5 +11,6 @@ public class TableColumn {
     private String columnName;
     private String columnComment;
     private String dataType;
+    private int dataLength;
     private String key;
 }
