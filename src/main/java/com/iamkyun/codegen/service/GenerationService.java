@@ -336,7 +336,7 @@ public class GenerationService {
             param.put("className", className);
             param.put("classNameVar", classNameVar);
             param.put("isMainTable", generationConfig.isMainTable());
-            param.put("moduleCn", tableInfo.getTableComment());
+            param.put("moduleCn", extraConfig.getModuleCn());
 
             // 处理类注释
             param.put("classComment", ClassComment.of(tableInfo.getTableComment(), extraConfig.getAuthor()));
